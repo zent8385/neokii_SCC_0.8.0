@@ -97,10 +97,13 @@ class CarInterface(CarInterfaceBase):
       ret.wheelbase = 2.80
       tire_stiffness_factor = 0.5
     # kia
-    elif candidate == CAR.SORENTO:
-      ret.mass = 1985. + STD_CARGO_KG
+    elif candidate == CAR.SORENTO: #FOR ATOM0.7.6 TUNE BASE
+      ret.lateralTuning.pid.kf = 0.00005
+      ret.mass = 1950. + STD_CARGO_KG
       ret.wheelbase = 2.78
-      tire_stiffness_factor = 0.5
+      ret.steerRatio = 14.4 * 1.15
+      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate in [CAR.K5, CAR.K5_HEV]:
       ret.mass = 3558. * CV.LB_TO_KG
       ret.wheelbase = 2.80
